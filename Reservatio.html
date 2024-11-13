@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+
+</head>
+
+<style>
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+body{
+    font-family: 'Dancing Curve';
+}
+
+.banner {
+    min-height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url("https://images.pexels.com/photos/887723/pexels-photo-887723.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2") center/cover no-repeat;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    padding-bottom: 20px;
+}
+
+.card-container{
+    display: grid;
+    grid-template-columns: 0px 420px;
+    min-height: 780px;
+}
+.card-img{
+    background:white;
+}
+
+.banner h1{
+    margin-top: 20px;
+    padding-bottom: 10px;
+    font-size:2.5em;
+    font-family: 'Dancing Script', cursive;
+    color: #FFD700;
+
+}
+.banner p{
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size:1em;
+    font-family: 'Dancing Curve';
+    color: #FFD700;
+    text-align: center;
+
+}
+.card-content{
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 10px;
+    height:770px;
+    padding: 10px;
+
+}
+.card-content h2{
+    text-align:center;
+    color: #FFD700;
+    font-size: 2.4em;
+    font-family: 'Dancing Script', cursive;
+    padding:15px 0px 10px 0px;
+
+}
+
+.card-content label{
+    margin-bottom: 25px;
+    font-size: 1.1em;
+    color: #000;
+}
+.card-content input[type="text"],
+.card-content input[type="email"],
+.card-content input[type="tel"],
+.card-content select,
+.card-content textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 12px;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size:0.8em;
+    resize:none;
+}
+
+.card-content .date-time-container,
+.card-content .email-phone-container{
+    display: flex;
+    justify-content: space-between;
+
+    gap: 10px;
+
+}
+.card-content .date-time-container input[type="date"],
+.card-content .date-time-container select,
+.card-content .email-phone-container input[type="email"],
+.card-content .email-phone-container input[type="tel"]{
+    width:50%;
+    height:40px;
+    border-radius: 10px;
+}
+
+.card-content .Payment-Card{
+    display:flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.card-content .Payment-Card label{
+    cursor: pointer;
+    padding: 0px;
+    border-radius: 5px;
+    font-size: 2em;
+    background-color: white;
+}
+
+.card-content .button{
+    width:100%;
+    padding: 10px;
+    color: #000;
+    font-size: 1em;
+    background-color: #FFD700;
+    text-decoration: none;
+    border:none;
+    border-radius: 10px;
+    cursor:pointer;
+    transition: background-color 0.3s;
+}
+.card-container .button:hover{
+    background-color: #fff099;
+    color:#333333;
+}
+</style>
+
+<script>
+    function formatPhoneNumber(input) {
+        let cleaned = input.value.replace(/\D/g, ''); // Remove all non-digit characters
+        let formatted = '';
+        // Format according to phone pattern (XXX-XXX-XXXX)
+        if (cleaned.length <= 3) {
+            formatted = cleaned;
+        } else if (cleaned.length <= 6) {
+            formatted = `${cleaned.slice(0, 3)}-${cleaned.slice(3)}`;
+        } else {
+            formatted = `${cleaned.slice(0, 3)}-${cleaned.slice(3, 6)}-${cleaned.slice(6, 10)}`;
+        }
+        input.value = formatted; // Update the input field with formatted value
+    }
+    function formatCreditCard(input){
+        let cleaned = input.value.replace(/\D/g, ''); // Remove all non-digit characters
+        let formatted = '';
+        // Format according to phone pattern (XXXX-XXXX-XXXX-XXXX)
+        if (cleaned.length <= 4) {
+        formatted = cleaned;
+        } else if (cleaned.length <= 8) {
+            formatted = `${cleaned.slice(0, 4)} ${cleaned.slice(4)}`;
+        } else if (cleaned.length <= 12) {
+            formatted = `${cleaned.slice(0, 4)} ${cleaned.slice(4, 8)} ${cleaned.slice(8)}`;
+        } else {
+            formatted = `${cleaned.slice(0, 4)} ${cleaned.slice(4, 8)} ${cleaned.slice(8, 12)} ${cleaned.slice(12, 16)}`;
+        }
+        input.value = formatted; // Update the input field with formatted value
+    }
+</script>
+
+<body>
+    <section class="banner">
+        <h1>Welcome to our Restaraunt</h1>
+        <p>Let us save a cozy spot just for you -<br> reserve today and indulge in warm, handcrafted flavors.</p>
+        <div class="card-container">
+            <div class="card-img">
+                <!-- image here(this is simply dont to keep the form in center)-->
+            </div>
+
+            <div class="card-content">
+                <h2>Reservation</h2>
+                <form>
+                    <label for = "Full-Name">Full Name</label>
+                    <div class="date-time-container">
+                        <input type = "text" id="First-Name" placeholder = "First Name" required>
+                        <input type = "text" id="Last-Name" placeholder = "Last Name" required>
+                    </div>
+        
+                    <label for = "Contact">Contact Information</label>
+                    <div class="email-phone-container">
+                        <input type = "email" id="E-mail" placeholder = "E-Mail: name@example.com" required>
+                        <input type = "tel" id="Phone" placeholder = "Phone: 300-123-4567" maxlength="12" oninput="formatPhoneNumber(this)" required>
+                    </div>
+        
+                    <label for = "Guests">No.of People</label>
+                    <div class="Quantity">
+                        <input type = "text" id="People" placeholder = "Number of People" required>
+                    </div>
+                        
+                    <label for="Reservation-Date-Time">Reservation</label>
+                    <div class="date-time-container">
+                        <input type="date" id="Reservation-Date" required style="margin-top:5px;">
+                        <select id="Reservation-Time" required>
+                            <option value = "">Select Time</option>
+                            <option value="09:00 AM">09:00 AM</option>
+                            <option value="11:00 AM">11:00 AM</option>
+                            <option value="1:00 PM">1:00 PM</option>
+                            <option value="3:00 PM">3:00 PM</option>
+                            <option value="5:00 PM">5:00 PM</option>
+                            <option value="7:00 PM">7:00 PM</option>
+                            <option value="9:00 PM">9:00 PM</option>
+                        </select>
+                    </div>
+        
+                    <label for ="Reservation-type">Reservation Type</label>
+                    <div class="Reservation-Selection">
+                        <select id="Reservation-type" required>
+                            <option value = "">Select</option>
+                            <option value="Lunch">Lunch</option>
+                            <option value="Dinner">Dinner</option>
+                            <option value="VIP/Mezzanin">VIP/Mezanine</option>
+                            <option value="Wedding/Anniversary">Wedding/Anniversary</option>
+                            <option value="Private">Private</option>
+                            <option value="Corporate">Corporate</option>
+                        </select>
+                    </div>
+        
+                    <label for="fname">Payment</label>
+                    <div class="Payment-Card">
+                        <input type="radio" name="Credit" id="Visa" value="Visa">
+                        <label for="Visa" title="Visa"><i class="fa fa-cc-visa" style="color:navy;"></i></label>
+                        
+                        <input type="radio" name="Credit" id="AmericanExpress" value="AmericanExpress">
+                        <label for="AmericanExpress" title="American Express"><i class="fa fa-cc-amex" style="color:blue;"></i></label>
+                        
+                        <input type="radio" name="Credit" id="Master" value="MasterCard">
+                        <label for="Master" title="Master Card"><i class="fa fa-cc-mastercard" style="color:rgb(255, 0, 0);"></i></label>
+                        
+                        <input type="radio" name="Credit" id="Discover" value="Discover">
+                        <label for="Discover" title="Discover"><i class="fa fa-cc-discover" style="color:orange;"></i></label>
+                    </div>
+        
+                    <label for = "CreditNum">Credit Card Number</label>
+                    <div class="Credit">
+                        <input type = "tel" id="CreditNum" name="CardNumber" placeholder = "1111 2222 3333 4444" maxlength="19" oninput="formatCreditCard(this)" required>
+                    </div>
+    
+                    <label for="Special-Requests">Special Request</label>
+                    <div class="request">
+                        <textarea id="Special-Requets" rows="3" placeholder="Enter any special requests" style="font-size: 14px;"></textarea>
+                    </div>
+    
+                    <button type="submit" class="button"><b>Submit</b></button>
+                </form>
+            </div>
+
+
+        </div>
+    </section>
+</body>
+</html>
