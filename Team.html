@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+body{
+    font-family: Poppins;
+    margin: 0;
+    background-color: #010101;
+    color: #eee;
+   
+}
+
+/* css slider */
+.slider{
+    height: 100vh;
+    margin-top: 0px;
+    position: relative;
+}
+.slider .list .item{
+    position: absolute;
+    inset: 0 0 0 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: .5s;
+}
+.slider .list .item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.slider .list .item::after{
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-image: linear-gradient(
+        to right, #000000ba 20%, transparent
+    );
+}
+.slider .list .item .content{
+    position: absolute;
+    left: 10%;
+    top: 20%;
+    width: 500px;
+    max-width: 80%;
+    z-index: 1;
+}
+.slider .list .item .content p:nth-child(1){
+    text-transform: uppercase;
+    letter-spacing: 10px;
+}
+.slider .list .item .content h3{
+    font-size: 2.8em;
+    margin: 0;
+}
+.slider .list .item.active{
+    opacity: 1;
+    z-index: 10;
+}
+@keyframes showContent {
+    to{
+        transform: translateY(0);
+        filter: blur(0);
+        opacity: 1;
+    }
+}
+.slider .list .item.active p:nth-child(1),
+.slider .list .item.active h3,
+.slider .list .item.active p:nth-child(3){
+    transform: translateY(30px);
+    filter: blur(20px);
+    opacity: 0;
+    animation: showContent .5s .7s ease-in-out 1 forwards;
+}
+.slider .list .item.active h3{
+    animation-delay: 1s;
+}
+.slider .list .item.active p:nth-child(3){
+    animation-duration: 1.3s;
+}
+
+.arrows{
+    position: absolute;
+    top: 30%;
+    right: 50px;
+    z-index: 100;
+}
+.arrows button{
+    background-color: rgba(238, 238, 238, 0.625);
+    border: none;
+    font-family: monospace;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: x-large;
+    color: #eee;
+    transition: .5s;
+}
+.arrows button:hover{
+    background-color: #eee;
+    color: black;
+}
+
+.thumbnail{
+    position: absolute;
+    bottom: -3%;
+    z-index: 11;
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    height: 250px;
+    padding: 0 50px;
+    box-sizing: border-box;
+    overflow: auto;
+    justify-content: center;
+}
+.thumbnail::-webkit-scrollbar{
+    width: 0;
+}
+.thumbnail .item{
+    width: 150px;
+    height: 220px;
+    filter: brightness(.5);
+    transition: .5s;
+    flex-shrink: 0;
+}
+.thumbnail .item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.thumbnail .item.active{
+    filter: brightness(1.5);
+}
+.thumbnail .item .content{
+    position: absolute;
+    inset: auto 10px 10px 10px;
+}
+@media screen and (max-width: 767px) {
+    .thumbnail{
+        display:none;
+    }
+    .slider .list .item .content h3{
+        font-size: 60px;
+    }
+    .arrows{
+        top: 10%;
+    }
+}
+</style>
+
+<body>
+    <!-- header Navigation Bar-->
+     
+    <!-- slider -->
+    <div class="slider">
+        <!-- list Items -->
+        <div class="list">
+            <div class="item active">
+                <img src="https://www.lecoursgroup.com/wp-content/uploads/2023/12/executive-chef-careers.webp">
+                <div class="content">
+                    <p>Alessandro Raffaele</p>
+                    <h3>Culinary Maestro</h3>
+                    <p>
+                        With over 15 years of experience in the culinary world, Chef Alessandro Raffaele brings a passion for creating innovative, yet comforting dishes. Having trained in some of Italy’s finest kitchens, he combines traditional techniques with a modern flair to craft memorable dining experiences. Alessandro’s dedication to quality ingredients and attention to detail shines through in every plate, ensuring that each dish is a celebration of flavor and artistry. As the head of our kitchen, his leadership and creativity are the driving force behind our restaurant’s success.
+                    </p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="https://hoteliersweb.com/wp-content/uploads/2022/10/Chef-Bhushan-Sawant-scaled.jpg">
+                <div class="content">
+                    <p>Bhushan Sawant</p>
+                    <h3>Executive Chef</h3>
+                    <p>
+                        Chef Bhushan Sawant is a culinary visionary with a deep-rooted love for fusion cuisine. Drawing inspiration from his diverse training and travels, Bhushan has honed a unique style that blends classic techniques with bold, international flavors. With over a decade of experience in leading high-end kitchens, his expertise and commitment to excellence elevate every dining experience. As our Executive Chef, Bhushan oversees all aspects of our kitchen operations, ensuring that each dish is crafted with precision and passion, delivering an exceptional taste of innovation in every bite.
+
+
+                    </p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="https://onlychefs.co.uk/wp-content/uploads/2017/03/Aspiring-Head-Chef-Tips.png">
+                <div class="content">
+                    <p>Simon Braithwait</p>
+                    <h3>Sous Chef</h3>
+                    <p>
+                        With a keen eye for detail and a love for culinary craftsmanship, Chef Simon Braithwait brings a wealth of experience and creativity to our kitchen. After years of working alongside top chefs across Europe, Simon has developed a refined palate and an expertise in elevating classic dishes with contemporary twists. As Sous Chef, Simon plays a pivotal role in executing the menu and mentoring our kitchen team, ensuring every dish meets the highest standards of quality and presentation. His passion for fresh, seasonal ingredients and his dedication to excellence are key to our kitchen's success.
+
+
+                    </p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="https://img.freepik.com/premium-photo/beautiful-korean-chef-girl-is-ready-cook-food-restaurant-kitchen_148840-14840.jpg">
+                <div class="content">
+                    <p>So-yeon</p>
+                    <h3>Senior Chef</h3>
+                    <p>
+                        Chef So-yeon brings a harmonious blend of tradition and innovation to our kitchen. With a background rooted in her Korean heritage, she expertly fuses authentic flavors with modern techniques, creating dishes that are both comforting and exciting. Having worked in renowned kitchens around the world, So-yeon has refined her skills and developed a unique culinary voice that shines through in every plate. As Senior Chef, she is instrumental in menu development, overseeing kitchen operations, and ensuring the highest standards of quality and creativity. Her passion for food and dedication to excellence make her an invaluable part of our team.
+                    </p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="https://t3.ftcdn.net/jpg/06/53/79/88/360_F_653798800_xuzX9Fnek006G2EacJhgmoZOJ0w9c4YD.jpg">
+                <div class="content">
+                    <p>Xavier Brooks</p>
+                    <h3>Grill Chef</h3>
+                    <p>
+                        Chef Xavier Brooks is a master of the grill, with a talent for bringing out the best in every cut of meat and vegetable. With years of experience in barbecue and open-fire cooking, he combines traditional grilling techniques with a deep understanding of flavor profiles to create dishes that are both smoky and savory. Xavier’s precision and passion for fire-cooked cuisine make him a standout in the kitchen. As Grill Chef, he ensures that every dish served from the grill is perfectly charred and bursting with flavor, providing our guests with a truly exceptional dining experience.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- button arrows -->
+        <div class="arrows">
+            <button id="prev"><</button>
+            <button id="next">></button>
+        </div>
+
+        <!-- thumbnail -->
+        <div class="thumbnail">
+            <div class="item active">
+                <img src="https://www.lecoursgroup.com/wp-content/uploads/2023/12/executive-chef-careers.webp">
+                <div class="content" style="color:black">
+                    <b>Alessandro Raffaele</b>
+                </div>
+            </div>
+            <div class="item">
+                <img src="https://hoteliersweb.com/wp-content/uploads/2022/10/Chef-Bhushan-Sawant-scaled.jpg">
+                <div class="content" style="color:black">
+                    <b>Bhushan Sawant</b>
+                </div>
+            </div>
+            <div class="item">
+                <img src="https://onlychefs.co.uk/wp-content/uploads/2017/03/Aspiring-Head-Chef-Tips.png">
+                <div class="content" style="color:black">
+                    <b>Simon Braithwait</b>
+                </div>
+            </div>
+            <div class="item">
+                <img src="https://img.freepik.com/premium-photo/beautiful-korean-chef-girl-is-ready-cook-food-restaurant-kitchen_148840-14840.jpg">
+                <div class="content" style="color:black">
+                    <b>So-yeon</b>
+                </div>
+            </div>
+            <div class="item">
+                <img src="https://t3.ftcdn.net/jpg/06/53/79/88/360_F_653798800_xuzX9Fnek006G2EacJhgmoZOJ0w9c4YD.jpg">
+                <div class="content" style="color:black">
+                    <b>Xavier Brooks</b>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<script>
+    let items = document.querySelectorAll('.slider .list .item');
+    let next = document.getElementById('next');
+    let prev = document.getElementById('prev');
+    let thumbnails = document.querySelectorAll('.thumbnail .item');
+
+    // config param
+    let countItem = items.length;
+    let itemActive = 0;
+
+    // Event next click (move to one slide ahead)
+    next.onclick = function(){
+        itemActive = itemActive + 1;
+        if(itemActive >= countItem){
+            itemActive = 0;
+        }
+        showSlider();
+    }
+    // Event prev click (move to one slide back)
+    prev.onclick = function(){
+        itemActive = itemActive - 1;
+        if(itemActive < 0){
+            itemActive = countItem - 1;
+        }
+        showSlider();
+    }
+    // auto run slider
+    let refreshInterval = setInterval(() => {
+        next.click();
+    }, 9000)    // 9 seconds for auto slide
+
+    function showSlider(){
+        // remove item active old
+        let itemActiveOld = document.querySelector('.slider .list .item.active');
+        let thumbnailActiveOld = document.querySelector('.thumbnail .item.active');
+        itemActiveOld.classList.remove('active');
+        thumbnailActiveOld.classList.remove('active');
+
+        // active new item
+        items[itemActive].classList.add('active');
+        thumbnails[itemActive].classList.add('active');
+        setPositionThumbnail(); //ensure the active thumbnail is properly positioned within the viewport.
+
+        // clear auto time run slider
+        clearInterval(refreshInterval);
+        refreshInterval = setInterval(() => {
+            next.click();
+        }, 5000)
+    }
+    function setPositionThumbnail () {
+        let thumbnailActive = document.querySelector('.thumbnail .item.active');
+        let rect = thumbnailActive.getBoundingClientRect();
+        if (rect.left < 0 || rect.right > window.innerWidth) {
+            thumbnailActive.scrollIntoView({ behavior: 'smooth', inline: 'nearest' });
+        }
+    }
+
+    // click thumbnail
+    thumbnails.forEach((thumbnail, index) => {
+        thumbnail.addEventListener('click', () => {
+            itemActive = index;
+            showSlider();
+        })
+    })
+</script>
+</body>
+</html>
